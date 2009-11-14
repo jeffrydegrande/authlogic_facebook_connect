@@ -128,6 +128,12 @@ module AuthlogicFacebookConnect
         end
       end
 
+      #forget this user in case another one signs in
+      def destroy
+        controller.clear_facebook_session_information()   #clear out our session
+        super
+      end
+
       def authenticating_with_facebook_connect?
         controller.set_facebook_session
         attempted_record.nil? && errors.empty? && controller.facebook_session
