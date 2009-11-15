@@ -25,5 +25,14 @@ module AuthlogicFacebookConnect
       output << fb_login_button("connect_to_facebook()", options)
       output
     end
+
+    def authlogic_facebook_logout_link(text, url)
+       if controller.facebook_session
+        link_to_function text, "FB.Connect.logoutAndRedirect( '#{url}' )"
+      else
+        link_to text, url
+      end
+    end
+
   end
 end
